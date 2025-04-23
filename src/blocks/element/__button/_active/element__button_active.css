@@ -1,0 +1,10 @@
+.element__button_active {
+  background-image: url(../../../../images/heart-full.svg);
+  min-width: 22px;
+  min-height: 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}

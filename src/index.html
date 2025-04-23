@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Иван Израилев">
+  <title>Mesto</title>
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Место">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="<%=require('./images/avatar.svg')%>" alt="Аватар">
+        <div class="profile__container">  
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button" type="button"></button>
+          <p class="profile__description">Исследователь океана</p>
+          <button class="profile__add-button" type="button"></button>
+        </div>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <template id="card-template">
+            <li class="element">
+              <button class="element__trash-button" type="button"></button>
+                <img class="element__image" src="" alt="">
+                <div class="element__container">
+                  <h2 class="element__title"></h2>
+                  <button class="element__button" type="button"></button>
+                </div>
+            </li>  
+          </template>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2023 Ivan Israel</p>
+    </footer>
+    <div class="popup" id="edit">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <form class="popup__form" name="form-name" novalidate>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__field">
+            <input class="popup__input" type="text" placeholder="Имя" name="name" id="popupName" minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-ЯёЁ\-\s]+$" data-error-text="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+            <span class="popupName-input-error popup__input-error"></span>
+            <input class="popup__input" type="text" placeholder="Описание" name="description" id="popupDescription" minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-ЯёЁ\-\s]+$" data-error-text="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+            <span class="popupDescription-input-error popup__input-error"></span>
+          </fieldset>
+          <input class="popup__submit" type="submit" value="Сохранить" name="submit">
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="add">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <form class="popup__form" name="form-name" novalidate>
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__field">
+            <input class="popup__input" type="text" placeholder="Название" name="title" id="popupTitle" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-ЯёЁ\-\s]+$" data-error-text="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+            <span class="popupTitle-input-error popup__input-error"></span>
+            <input class="popup__input" type="url" placeholder="Ссылка на картинку" name="ImageLink" id="popupImageLink" required>
+            <span class="popupImageLink-input-error popup__input-error"></span>
+          </fieldset>
+          <input class="popup__submit" type="submit" value="Сохранить" name="submit">
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="photo">
+      <div class="popup__image-container">
+        <button class="popup__close-button" type="button" id="photo-close"></button>
+        <img class="popup__image">
+        <p class="popup__image-text"></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

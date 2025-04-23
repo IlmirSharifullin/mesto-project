@@ -1,0 +1,35 @@
+.profile__container {
+  display: grid;
+  grid-template-columns: min-content min-content max-content;
+  grid-template-rows: 1fr min-content;
+  row-gap: 16px;
+  grid-auto-flow: row;
+  justify-items: start;
+  align-items: center;
+  grid-template-areas: 
+  "name edit-button add-button"
+  "description description add-button"; 
+  padding-left: 30px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1280px) {
+  .profile__container {
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(3, min-content);
+  grid-template-areas: 
+  "name name edit-button"
+  "description description description"
+  "add-button add-button add-button"; 
+  padding: 22px 0 0 30px;
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .profile__container {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}

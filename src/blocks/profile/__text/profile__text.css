@@ -1,0 +1,12 @@
+.profile__text {
+  display: grid;
+  align-self: center;
+  grid-template-columns: 1fr, 24px;
+  max-height: 73px;
+  grid-row-gap: 16px;
+  grid-column-gap: 18px;
+  margin-left: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: start;
+}

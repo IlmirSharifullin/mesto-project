@@ -1,0 +1,12 @@
+.popup__field {
+  border: none;
+  padding: 54px 36px 48px 36px;
+  margin: 0;
+  max-width: 430px;
+}
+
+@media screen and (max-width: 998px) {
+  .popup__field {
+    padding: 75px 22px 45px 22px;
+  }
+}
