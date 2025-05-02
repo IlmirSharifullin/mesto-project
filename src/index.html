@@ -13,11 +13,13 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/avatar.svg')%>" alt="Аватар">
+        <div class="profile__avatar-wrapper">
+          <img class="profile__avatar" src="" alt="Аватар">
+        </div>
         <div class="profile__container">  
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button class="profile__edit-button" type="button"></button>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
           <button class="profile__add-button" type="button"></button>
         </div>
       </section>
@@ -29,7 +31,10 @@
                 <img class="element__image" src="" alt="">
                 <div class="element__container">
                   <h2 class="element__title"></h2>
-                  <button class="element__button" type="button"></button>
+                  <div class="element__like-container">
+                    <button class="element__button" type="button"></button>
+                    <span class="element__like-number"></span>
+                  </div>
                 </div>
             </li>  
           </template>
@@ -74,6 +79,19 @@
         <button class="popup__close-button" type="button" id="photo-close"></button>
         <img class="popup__image">
         <p class="popup__image-text"></p>
+      </div>
+    </div>
+    <div class="popup" id="avatar">
+      <div class="popup__image-container">
+        <button class="popup__close-button" type="button" id="avatar-close"></button>
+        <form class="popup__form" name="form-name" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <fieldset class="popup__field">
+            <input class="popup__input" type="url" placeholder="Ссылка" name="avatar" id="popupAvatarLink" required>
+            <span class="popupAvatarLink-input-error popup__input-error"></span>
+          </fieldset>
+          <input class="popup__submit" type="submit" value="Сохранить" name="submit">
+        </form>
       </div>
     </div>
   </div>

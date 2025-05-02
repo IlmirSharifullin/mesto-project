@@ -1,4 +1,16 @@
-import { popupName, popupDescription, profileName, profileDescription, editPopup } from "../index.js";
+import {
+    popupName,
+    popupDescription,
+    profileName,
+    profileDescription,
+    avatarElement,
+    editPopup,
+    newAvatarPopup,
+    newAvatarUrl,
+    baseUrl,
+    authorization,
+} from "../index.js";
+import {patchUsersMe, patchUsersMeAvatar} from "./api";
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -16,17 +28,26 @@ function handleEscButton (evt) {
 }
 
 function handleOutsideClick(evt) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (openedPopup && !evt.target.closest('.popup__container') && !evt.target.closest('.popup__image-container')) {
-    closePopup(openedPopup);
-  }
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup && !evt.target.closest('.popup__container') && !evt.target.closest('.popup__image-container')) {
+        closePopup(openedPopup);
+    }
 }
 
 function updateProfile(evt) {
-  evt.preventDefault();
-  profileName.textContent = popupName.value;
-  profileDescription.textContent = popupDescription.value;
-  closePopup(editPopup);
+    evt.preventDefault();
+    console.log('save')
+    editPopup.querySelector('.popup__submit').value = 'Сохранение...'
+    patchUsersMe()
+        .then(res => res.json())
+        .then(res => {
+            profileName.textContent = res.name;
+            profileDescription.textContent = res.about;
+        })
+        .finally(() => {
+                closePopup(editPopup);
+                editPopup.querySelector('.popup__submit').value = 'Сохранить'
+            })
 }
 
 function fillEditPopup () {
@@ -35,4 +56,23 @@ function fillEditPopup () {
   openPopup(editPopup);
 }
 
-export { openPopup, closePopup, handleEscButton, handleOutsideClick, updateProfile, fillEditPopup };
+function clearAvatarPopup () {
+  newAvatarUrl.value = ''
+  openPopup(newAvatarPopup);
+}
+
+function updateAvatar(evt) {
+    evt.preventDefault();
+    newAvatarPopup.querySelector('.popup__submit').value = 'Сохранение...'
+    patchUsersMeAvatar()
+        .then(res => res.json())
+        .then(res => {
+            avatarElement.src = res.avatar
+        })
+        .finally(() => {
+            closePopup(newAvatarPopup);
+            newAvatarPopup.querySelector('.popup__submit').value = 'Сохранить'
+        })
+}
+
+export { openPopup, closePopup, handleEscButton, handleOutsideClick, updateProfile, updateAvatar, fillEditPopup, clearAvatarPopup};
